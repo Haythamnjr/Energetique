@@ -283,6 +283,11 @@ footer .footer-links a:hover {
 }
 
 @media (max-width: 768px) {
+    body{
+        overflow-x:hidden;
+        
+    }
+        
     label {
         display: inline-block;
         width: auto;
@@ -335,6 +340,7 @@ footer .footer-links a:hover {
 @media (max-width: 480px) {
     body {
         font-size: medium;
+        overflow-x:hidden;
     }
 
     h1 {
