@@ -280,3 +280,98 @@ footer .footer-links a:hover {
     color: #0ea5e9;
     text-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
 }
+
+@media (max-width: 768px) {
+    label {
+        display: inline-block;
+        width: auto;
+        min-width: 70px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.1em;
+        padding: 15px;
+    }
+
+    .container-pain,
+    .container-viande,
+    .container-legumes,
+    .container-banane,
+    .container-pomme,
+    .container-yaourt {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+        gap: 8px;
+    }
+
+    input[type="text"] {
+        padding: 6px 8px;
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 10px 24px;
+        font-size: 1em;
+    }
+
+    footer .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    footer .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    body {
+        font-size: medium;
+    }
+
+    h1 {
+        font-size: 1.4em;
+    }
+
+    h2 {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    label {
+        width: auto;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+
+    .container-pain,
+    .container-viande,
+    .container-legumes,
+    .container-banane,
+    .container-pomme,
+    .container-yaourt {
+        padding: 10px 12px;
+        gap: 5px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 0.95em;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+}
