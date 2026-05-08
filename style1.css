@@ -200,7 +200,6 @@ label {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-
     padding: 20px;
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(6, 182, 212, 0.1));
     border-radius: 12px;
@@ -208,6 +207,13 @@ label {
     box-shadow: 0 4px 16px rgba(14, 165, 233, 0.2);
     margin: 20px 0;
     transition: all 0.3s ease;
+}
+
+.container-resultat p{
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+    
 }
 
 .container-resultat:hover {
