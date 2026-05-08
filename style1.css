@@ -330,7 +330,7 @@ footer .footer-links a:hover {
     }
 }
 
-/* Small Mobile */
+
 @media (max-width: 480px) {
     body {
         font-size: medium;
