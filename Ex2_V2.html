@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+
+
+</head>
+
+<body>
+    <h1>Calcul Valeur énergétique d' un repas</h1>
+    <h2>Choisir les aliments qui composent votre repas :</h2>
+    <form action="#">
+        <div class="Container">
+            <div class="container-pain">
+                <input type="checkbox" name="check" id="checkP" value="Pain">
+                <label for="nbr">Pain :</label>
+                <input type="text" name="nbr" id="qtyPain" class="zone"><p class="GraM">grammes</p> 
+            </div>
+            <div class="container-viande">
+                <input type="checkbox" name="check" id="checkV" value="Viande">
+                <label for="nbr">Viande :</label>
+                <input type="text" name="nbr" id="qtyViande" class="zone"><p class="GraM">grammes</p> 
+            </div>
+            <div class="container-legumes">
+                <input type="checkbox" name="check" id="checkL" value="Légumes">
+                <label for="nbr">Légumes :</label>
+                <input type="text" name="nbr" id="qtyLegumes" class="zone"><p class="GraM">grammes</p> 
+            </div>
+            <div class="container-banane">
+                <input type="checkbox" name="check" id="checkB" value="Banane">
+                <label for="nbr">Banane :</label>
+                <input type="text" name="nbr" id="qtyBanane" class="zone"><p class="Unit">Unités</p> 
+            </div>
+            <div class="container-pomme">
+                <input type="checkbox" name="check" id="checkPm" value="Pomme">
+                <label for="nbr">Pomme :</label>
+                <input type="text" name="nbr" id="qtyPomme" class="zone"><p class="Unit">Unités</p> 
+            </div>
+            <div class="container-yaourt">
+                <input type="checkbox" name="check" id="checkY" value="Yaourt">
+                <label for="nbr">Yaourt :</label>
+                <input type="text" name="nbr" id="qtyYaourt" class="zone"><p class="Unit">Unités</p> 
+            </div>
+            <div class="container-btn">
+                <button type="button" onclick="calculer()">Calculer</button>
+            </div>
+            <div class="container-resultat">
+                <input type="text" id="resultat" name="nbrr" readonly placeholder="La valeur énergétique est"><p class="KiL">Kilo calories</p> 
+            </div>
+        </div>
+    </form>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Calculateur de Valeur Énergétique - Tous droits réservés</p>
+            <div class="footer-links">
+                <a href="#">À propos</a>
+                <a href="#">Contact</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="Calories.JS">
+
+
+</script>
+
+</html>
