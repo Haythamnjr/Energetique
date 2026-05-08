@@ -12,6 +12,7 @@ body {
     background: linear-gradient(135deg, #0f172a, #1e293b, #3b0764);
     background-size: cover;
     margin: auto;
+    overflow-x: hidden;
     text-rendering: optimizeLegibility;
     font-weight: bold;
     font-size: large;
