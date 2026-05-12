@@ -25,7 +25,7 @@ const calculer = () => {
     config.forEach(element => {
         let Check = document.getElementById(element.chk).checked;
         let Inputs = document.getElementById(element.qty).value;
-        if (Check.checked) {
+        if (Check) {
             compt++;
             if (!Inputs) {
                 getError(Inputs, `Remplissez ${Inputs.id} cette case`);
