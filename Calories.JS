@@ -1,10 +1,15 @@
 const CalculeGra = (InputQ, CalorieG) => (+InputQ / 100) * +CalorieG;
 const CalculeUnit = (InputQ, CalorieUn) => (+InputQ * +CalorieUn);
-
+const getError = (element, comment) => {
+    const span = document.createElement('span');
+    span.innerText = comment;
+    span.classList.add('error');
+    element.after(span);
+}
 const calculer = () => {
     let total = 0;
     let compt = 0;
-    let errors = [];
+    let valide = false;
     let Result = document.getElementById('resultat');
 
     const config = [
@@ -17,18 +22,19 @@ const calculer = () => {
     ];
 
     config.forEach(element => {
-        let Check = document.getElementById(element.chk);
-        let Inputs = document.getElementById(element.qty);
+        let Check = document.getElementById(element.chk).checked;
+        let Inputs = document.getElementById(element.qty).value;
         if (Check.checked) {
             compt++;
-            if (!Inputs.value) {
-                errors.push(element.qty);
-                
+            if (!Inputs) {
+                getError(Inputs, `Remplissez ${Inputs.id} cette case`);
+                valide = false;
 
             }
             else {
                 
                 total += element.fn(Inputs.value, element.cal);
+                valide = true;
             }
         }
 
@@ -36,14 +42,17 @@ const calculer = () => {
 
     })
     if (!compt) {
-        alert('tu doit selectioner au moin une input');
+        getError(button, "Tu dois sélectionner au moins une option");
     }
     else {
-        if (errors.length) {
-            alert('vous devez remplir la zone ' + errors);
+        if (!valide) {
+            getError(button, "Corrigez les erreurs ci-dessus");
+            Result.value = "Invalide";
+            
         }
         else {
             Result.value = total.toFixed(2);
+            valide = true;
         }
     }
 
