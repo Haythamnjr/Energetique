@@ -23,11 +23,11 @@ const calculer = () => {
     const Error = document.querySelectorAll('.error');
     Error.forEach(ell => ell.remove());
     config.forEach(element => {
-        let Check = document.getElementById(element.chk).checked;
-        let Inputs = document.getElementById(element.qty).value;
-        if (Check) {
+        let Check = document.getElementById(element.chk);
+        let Inputs = document.getElementById(element.qty);
+        if (Check.checked) {
             compt++;
-            if (!Inputs) {
+            if (!Inputs.value) {
                 getError(Inputs, `Remplissez ${Inputs.id} cette case`);
                 valide = false;
 
