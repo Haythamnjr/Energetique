@@ -11,7 +11,7 @@ const calculer = () => {
     let compt = 0;
     let valide = false;
     let Result = document.getElementById('resultat');
-
+    let button = document.querySelector('button');
     const config = [
         { chk: 'checkP', qty: 'qtyPain', cal: 275, fn: CalculeGra },
         { chk: 'checkV', qty: 'qtyViande', cal: 180, fn: CalculeGra },
