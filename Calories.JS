@@ -9,7 +9,6 @@ const getError = (element, comment) => {
 const calculer = () => {
     let total = 0;
     let compt = 0;
-    const Error = document.querllySelectorAll('.error');
     let valide = false;
     let Result = document.getElementById('resultat');
     let button = document.querySelector('button');
@@ -21,7 +20,8 @@ const calculer = () => {
         { chk: 'checkPm', qty: 'qtyPomme', cal: 80, fn: CalculeUnit },
         { chk: 'checkY', qty: 'qtyYaourt', cal: 140, fn: CalculeUnit }
     ];
-    Error.forEach(ell=>ell.remove());
+    const Error = document.querySelectorAll('.error');
+    Error.forEach(ell => ell.remove());
     config.forEach(element => {
         let Check = document.getElementById(element.chk).checked;
         let Inputs = document.getElementById(element.qty).value;
