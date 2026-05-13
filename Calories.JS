@@ -44,15 +44,16 @@ const calculer = () => {
     })
     if (!compt) {
         getError(button, "Tu dois sélectionner au moins une option");
+        valide = false;
     }
     else {
         if (!valide) {
-            getError(button, "Corrigez les erreurs ci-dessus");
             Result.value = "Invalide";
-            
+            Result.style.color = 'red';
         }
         else {
             Result.value = total.toFixed(2);
+            Result.style.color = 'black';
             valide = true;
         }
     }
