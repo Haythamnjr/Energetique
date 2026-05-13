@@ -5,6 +5,10 @@ const getError = (element, comment) => {
     span.innerText = comment;
     span.classList.add('error');
     element.after(span);
+    span.scrollIntoView({
+        "behavior": "smooth",
+        "block": "center"
+    });
 }
 const calculer = () => {
     let total = 0;
