@@ -23,7 +23,11 @@ label {
     display: inline-block;
     width: 120px;
 }
-
+.container-choisir {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
