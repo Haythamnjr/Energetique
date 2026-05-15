@@ -10,6 +10,18 @@ const getError = (element, comment) => {
         "block": "center"
     });
 }
+const Attention = (element, comment) => {
+    const span = document.createElement('span');
+    span.innerText = comment;
+    span.classList.add('Attention');
+    element.after(span);
+    setTimeout(() => span.remove(), 8000);
+    span.scrollIntoView({
+        "behavior": "smooth",
+        "block": "center"
+    });
+    
+}
 const calculer = () => {
     let total = 0;
     let compt = 0;
@@ -24,6 +36,8 @@ const calculer = () => {
         { chk: 'checkPm', qty: 'qtyPomme', cal: 80, fn: CalculeUnit },
         { chk: 'checkY', qty: 'qtyYaourt', cal: 140, fn: CalculeUnit }
     ];
+    const InputsCheck = document.getElementsByName('Cho');
+    document.querySelectorAll(".Attention").forEach(ell => ell.remove());
     const Error = document.querySelectorAll('.error');
     Error.forEach(ell => ell.remove());
     config.forEach(element => {
@@ -46,20 +60,19 @@ const calculer = () => {
 
 
     })
-    if (!compt) {
-        getError(button, "Tu dois sélectionner au moins une option");
-        valide = false;
-    }
-    else {
-        if (!valide) {
-            Result.value = "Invalide";
-            Result.style.color = 'red';
-        }
-        else {
+    switch(true){
+        case !InputsCheck[0].checked && !InputsCheck[1].checked:
+            Attention(InputsCheck[0], "Veuillez choisir au moins une catégorie !");
+            break;
+        case !compt:
+            getError(button, "Tu dois sélectionner au moins une option");
+            break;
+        default:
             Result.value = total.toFixed(2);
             Result.style.color = 'black';
-            valide = true;
-        }
+            break;
+    }
+        
     }
 
 }
