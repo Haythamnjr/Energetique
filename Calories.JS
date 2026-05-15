@@ -67,12 +67,20 @@ const calculer = () => {
         case !compt:
             getError(button, "Tu dois sélectionner au moins une option");
             break;
-        default:
+    }
+
+  
+    if(compt) {
+        if (!valide) {
+            Result.value = "Incomplet";
+            Result.style.color = "red";
+        }
+        else {
             Result.value = total.toFixed(2);
             Result.style.color = 'black';
-            break;
-    }
-        
+            valide = true;
+
+        }
     }
 
 }
