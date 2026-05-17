@@ -1,15 +1,36 @@
 const CalculeGra = (InputQ, CalorieG) => (+InputQ / 100) * +CalorieG;
 const CalculeUnit = (InputQ, CalorieUn) => (+InputQ * +CalorieUn);
+const CalculeCarbsGra = (InputQ, Carbs) => (+InputQ * +Carbs) / 100;
+const CalculerCarbsUnit = (InputQ, Carbs) => +InputQ * +Carbs;
 const getError = (element, comment) => {
     const span = document.createElement('span');
     span.innerText = comment;
     span.classList.add('error');
-    element.after(span);
+    element.insertAdjacentElement('afterend' ,span);
+    setTimeout(() => span.remove(), 8000);
     span.scrollIntoView({
         "behavior": "smooth",
         "block": "center"
     });
+    element.focus();
+
+
+
 }
+const div = document.getElementById('conTdiaBt');
+div.classList.remove('container-diabet');
+
+const Change = (e) => {
+    div.classList.toggle('container-diabet', e.value === "diabete");
+}
+
+const Valide = (element, comment) => {
+    const span = document.createElement('span');
+    span.innerText = comment;
+    span.classList.add('valide');
+    element.after(span);
+}
+
 const Attention = (element, comment) => {
     const span = document.createElement('span');
     span.innerText = comment;
@@ -20,25 +41,29 @@ const Attention = (element, comment) => {
         "behavior": "smooth",
         "block": "center"
     });
-    
+
 }
 const calculer = () => {
     let total = 0;
+    let totalGl = 0;
     let compt = 0;
-    let valide = false;
     let Result = document.getElementById('resultat');
+    let diabetResult = document.getElementById('resultDia');
     let button = document.querySelector('button');
-    const config = [
-        { chk: 'checkP', qty: 'qtyPain', cal: 275, fn: CalculeGra },
-        { chk: 'checkV', qty: 'qtyViande', cal: 180, fn: CalculeGra },
-        { chk: 'checkL', qty: 'qtyLegumes', cal: 40, fn: CalculeUnit },
-        { chk: 'checkB', qty: 'qtyBanane', cal: 160, fn: CalculeUnit },
-        { chk: 'checkPm', qty: 'qtyPomme', cal: 80, fn: CalculeUnit },
-        { chk: 'checkY', qty: 'qtyYaourt', cal: 140, fn: CalculeUnit }
-    ];
+    let valide = false;
     const InputsCheck = document.getElementsByName('Cho');
-    document.querySelectorAll(".Attention").forEach(ell => ell.remove());
+
+    const config = [
+        { chk: 'checkP', qty: 'qtyPain', cal: 275, gi: 70, carbs: 50, fn: CalculeGra, f: CalculeCarbsGra },
+        { chk: 'checkV', qty: 'qtyViande', cal: 180, gi: 0, carbs: 0, fn: CalculeGra, f: CalculeCarbsGra },
+        { chk: 'checkL', qty: 'qtyLegumes', cal: 40, gi: 15, carbs: 5, fn: CalculeGra, f: CalculeCarbsGra },
+        { chk: 'checkB', qty: 'qtyBanane', cal: 160, gi: 50, carbs: 22, fn: CalculeUnit, f: CalculerCarbsUnit },
+        { chk: 'checkPm', qty: 'qtyPomme', cal: 80, gi: 35, carbs: 14, fn: CalculeUnit, f: CalculerCarbsUnit },
+        { chk: 'checkY', qty: 'qtyYaourt', cal: 140, gi: 15, carbs: 5, fn: CalculeUnit, f: CalculerCarbsUnit }
+    ];
+
     const Error = document.querySelectorAll('.error');
+    document.querySelectorAll(".Attention").forEach(ell => ell.remove());
     Error.forEach(ell => ell.remove());
     config.forEach(element => {
         let Check = document.getElementById(element.chk);
@@ -47,40 +72,70 @@ const calculer = () => {
             compt++;
             if (!Inputs.value) {
                 getError(Inputs, `Remplissez ${Inputs.id} cette case`);
-                valide = false;
+
 
             }
             else {
-                
-                total += element.fn(Inputs.value, element.cal);
+                let Calorie = (element.fn === CalculeGra) ? CalculeGra : CalculeUnit;
+                total += element.fn(Inputs.value, element.cal) || 0;
                 valide = true;
+                if (InputsCheck[0].checked) {
+                    let Carbs = (element.f === CalculeCarbsGra) ? CalculeCarbsGra : CalculerCarbsUnit;
+                    let CarbosCalcul = element.f(Inputs.value, element.carbs) || 0;
+                    totalGl += (CarbosCalcul * element.gi) / 100;
+                    switch (true) {
+                        case totalGl >= 0 && totalGl <= 10:
+                            Valide(button, "Charge Glycémique Faible : Repas excellent et sécurisé pour les diabétiques.");
+                            break;
+                        case totalGl > 11 && totalGl < 19:
+                            Attention(button, "Charge Glycémique Modérée : À consommer avec modération.");
+                            break;
+                        case totalGl >= 20:
+                            getError(button , "Charge Glycémique Élevée : Attention ! Risque de pic de glycémie élevé.");
+                            break;
+
+                    }
+
+                }
+
             }
         }
 
 
 
     })
-    switch(true){
+    switch (true) {
         case !InputsCheck[0].checked && !InputsCheck[1].checked:
             Attention(InputsCheck[0], "Veuillez choisir au moins une catégorie !");
-            break;
+            return;
         case !compt:
             getError(button, "Tu dois sélectionner au moins une option");
             break;
+
+
     }
 
-  
-    if(compt) {
+
+
+
+    if (compt) {
         if (!valide) {
-            Result.value = "Incomplet";
+            Result.value = 0;
+            diabetResult.value = 0;
             Result.style.color = "red";
+            diabetResult.style.color = "red";
         }
         else {
-            Result.value = total.toFixed(2);
+            Result.value = total.toFixed(2) + " Kilo Calories";
+            diabetResult.value = totalGl.toFixed(2) + " Points";
             Result.style.color = 'black';
+            diabetResult.style.color = 'black';
             valide = true;
+
+
 
         }
     }
+
 
 }
