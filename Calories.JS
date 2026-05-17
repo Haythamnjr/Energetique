@@ -61,7 +61,10 @@ const calculer = () => {
         { chk: 'checkPm', qty: 'qtyPomme', cal: 80, gi: 35, carbs: 14, fn: CalculeUnit, f: CalculerCarbsUnit },
         { chk: 'checkY', qty: 'qtyYaourt', cal: 140, gi: 15, carbs: 5, fn: CalculeUnit, f: CalculerCarbsUnit }
     ];
-
+    const valid = document.querySelectorAll('.valide');
+    const Attention = document.querySelectorAll('.Attention');
+    Attention.forEach(ele=>ele.remove());
+    valid.forEach(ele=>ele.remove());
     const Error = document.querySelectorAll('.error');
     document.querySelectorAll(".Attention").forEach(ell => ell.remove());
     Error.forEach(ell => ell.remove());
