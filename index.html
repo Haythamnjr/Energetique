@@ -16,8 +16,8 @@
     <form action="#">
         <div class="container-choisir">
             <label for="Cho">Choisissez-en un</label>
-            <label for="diabete">diabète</label><input type="radio" name="Cho" id="diabete">
-            <label for="rigime">rigime</label><input type="radio" name="Cho" id="rigime">
+            <label for="diabete">diabète</label><input type="radio" name="Cho" id="diabete" onchange="Change(this)">
+            <label for="rigime">rigime</label><input type="radio" name="Cho" id="rigime" onchange="Change(this)">
         </div>
         <div class="Container">
             <div class="container-pain">
@@ -54,7 +54,10 @@
                 <button type="button" onclick="calculer()">Calculer</button>
             </div>
             <div class="container-resultat">
-                <input type="text" id="resultat" name="nbrr" readonly placeholder="La valeur énergétique est"><p class="KiL">Kilo calories</p> 
+                <input type="text" id="resultat" name="nbrr" readonly placeholder="La valeur énergétique"> 
+            </div>
+            <div class="container-diabet" style="display: none;" id="conTdiaBt">
+                <input type="text" name="nbrr" id="resultDia" readonly placeholder="Charge Glycémique">
             </div>
         </div>
     </form>
