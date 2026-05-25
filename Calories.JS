@@ -62,11 +62,10 @@ const calculer = () => {
         { chk: 'checkY', qty: 'qtyYaourt', cal: 140, gi: 15, carbs: 5, fn: CalculeUnit, f: CalculerCarbsUnit }
     ];
     const valid = document.querySelectorAll('.valide');
-    const Attention = document.querySelectorAll('.Attention');
-    Attention.forEach(ele=>ele.remove());
-    valid.forEach(ele=>ele.remove());
+    const Attentions = document.querySelectorAll('.Attention');
     const Error = document.querySelectorAll('.error');
-    document.querySelectorAll(".Attention").forEach(ell => ell.remove());
+    valid.forEach(ele=>ele.remove());
+    Attentions.forEach(ele=>ele.remove());
     Error.forEach(ell => ell.remove());
     config.forEach(element => {
         let Check = document.getElementById(element.chk);
@@ -77,6 +76,10 @@ const calculer = () => {
                 getError(Inputs, `Remplissez ${Inputs.id} cette case`);
 
 
+            }else if(Inputs.value < 0){
+                getError(Inputs, `Le nombre doit être positive`);
+            }else if(isNaN(Inputs.value)){
+                getError(Inputs, `Entrer un nombre`);
             }
             else {
                 let Calorie = (element.fn === CalculeGra) ? CalculeGra : CalculeUnit;
